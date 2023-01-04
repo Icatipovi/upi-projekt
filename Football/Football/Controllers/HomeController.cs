@@ -8,10 +8,11 @@ namespace Football.Controllers
     {
         public HomeController()
         {
+
         }
         public IActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
         public IActionResult Privacy()

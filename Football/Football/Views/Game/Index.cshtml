@@ -16,19 +16,25 @@
     }
 </style>
 
-<h1>Index</h1>
+<h1>Games</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model=>model.Home)
+            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.HomeScore)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.GuestScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model=>model.Guest)
+
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
@@ -40,10 +46,17 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem=>item.Home.NameOfTeam)
+            </td>
+            
+            <td>
                 @Html.DisplayFor(modelItem => item.HomeScore)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GuestScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem=>item.Guest.NameOfTeam)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)

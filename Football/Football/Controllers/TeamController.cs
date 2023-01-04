@@ -7,20 +7,52 @@ namespace Football.Controllers
 {
     public class TeamController : Controller
     {
-        ITeamServices iss;
-        public TeamController(ITeamServices _iss)
+        
+        FLContext db;
+        public TeamController(FLContext _db)
         {
-            iss = _iss;
+            db = _db;
         }
+        
+
         public IActionResult Index()
         {
-            return View(iss.GetAllTeams());
+            IEnumerable<Team> teams = db.Teams.Select(t => t).ToList();
+            return View(teams);
         }
 
         public IActionResult Delete(int id)
         {
             //iss.DeleteATeam(id);
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Team team = db.Teams.FirstOrDefault(t => t.Team_ID == id);
+            if (team == null)
+            {
+                return View();
+            }
+            else
+            {
+                return View(team);
+            }
+        }
+        [HttpPost]
+        public IActionResult Edit(Team tm)
+        {
+            db.Teams.Update(tm);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public IActionResult Details(int id)
+        {
+            Team team = db.Teams.FirstOrDefault(t => t.Team_ID == id);
+            IEnumerable<City> cities = db.Cities.Select(t => t).ToList();
+            IEnumerable<Scale> scales = db.Scales.Select(t => t).ToList();
+            IEnumerable<Coach> coaches = db.Coaches.Select(t => t).ToList();
+            return View(team);
         }
     }
 }

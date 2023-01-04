@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Football;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
+using Football.Context;
 
 namespace TestProject1
 {
@@ -15,8 +16,7 @@ namespace TestProject1
             var controller = new HomeController();
             var result = controller.Index() as ViewResult;
             Assert.AreEqual("Index", result.ViewName);
-            return;
         }
-
+        
     }
 }

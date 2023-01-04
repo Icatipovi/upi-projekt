@@ -14,7 +14,7 @@ namespace Football.Models
         public string? LastName { get; set; }
         public int PlayerNumber { get; set; }
         public double AverageMark { get; set; }
-        public Team Team { get; set; }
+        public Team? Team { get; set; }
         public Position? Position { get; set; }
 
     }
