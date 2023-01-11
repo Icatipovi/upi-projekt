@@ -21,6 +21,8 @@ namespace Football.Controllers
             IEnumerable<Team> teams = db.Teams.Select(p => p).ToList();
             return View(players);
         }
+
+        //brisanje igrača
         public IActionResult Delete(int id)
         {
             Player player = db.Players.FirstOrDefault(p => p.Player_ID == id);
@@ -33,6 +35,8 @@ namespace Football.Controllers
             return View();
         }
         [HttpGet]
+
+        //uređivanje podataka o igraču
         public IActionResult Edit(int id)
         { 
             Player player = db.Players.FirstOrDefault(p=>p.Player_ID == id);
@@ -52,6 +56,7 @@ namespace Football.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
         }
+        //prikaz dodatnih informacija o igraču - ime, prezime, broj na dresu, prosječna ocjena, ime kluba, pozicija
         public IActionResult Details(int id)
         {
             Player player = db.Players.FirstOrDefault(p => p.Player_ID == id);
@@ -59,6 +64,8 @@ namespace Football.Controllers
             IEnumerable<Position> positions = db.Positions.Select(g => g).ToList();
             return View(player);
         }   
+
+        //dodavanje novog igrača
         public IActionResult Create()
         {         
             Player pl = new Player();
@@ -73,6 +80,8 @@ namespace Football.Controllers
             db.SaveChanges();           
             return RedirectToAction("Index");
         }
+
+        // dohvaćanje pozicije
         private List<SelectListItem> GetPositions()
         {
             var lstPos=new List<SelectListItem>();
@@ -91,6 +100,8 @@ namespace Football.Controllers
             lstPos.Insert(0, defItem2);
             return lstPos;
         }
+
+        //dohvaćanje kluba
         public List<SelectListItem> GetTeams()
         {
             var lstTe = new List<SelectListItem>();

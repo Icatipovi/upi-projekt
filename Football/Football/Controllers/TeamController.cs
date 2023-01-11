@@ -21,11 +21,14 @@ namespace Football.Controllers
             return View(teams);
         }
 
+        //brisanje kluba
         public IActionResult Delete(int id)
         {
             //iss.DeleteATeam(id);
             return RedirectToAction("Index");
         }
+
+        //edit
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -46,6 +49,8 @@ namespace Football.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        //prikaz dodatnih informacija o klubu - ime kluba, grad u kojem se nalazi, pozicija na tablici, bodovi, trener
         public IActionResult Details(int id)
         {
             Team team = db.Teams.FirstOrDefault(t => t.Team_ID == id);
